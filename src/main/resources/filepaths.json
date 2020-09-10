@@ -1,0 +1,188 @@
+{
+    "filesPaths": [
+        {
+            "FileName": "AudioPlugin.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "ApzARPlugin.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "ApzBarcodePlugin.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "CalendarPlugin.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "CallLogs.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "ApzCameraPlugin.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "NativeCamera.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "Contacts.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "ApzCurrentLocation.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed"
+        },
+        {
+            "FileName": "CurrentLocation.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed"
+        },
+        {
+            "FileName": "BiometricAuth.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed"
+        },
+        {
+            "FileName": "FingerprintHandler.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed"
+        },
+        {
+            "FileName": "ApzFileOperationPlugin.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "DirectoryBrowser.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "FileOperation.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "ApzFileToBase64Plugin.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed"
+        },
+        {
+            "FileName": "DeviceFingerprintAccess.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "FingerprintHandler.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "ApzGpsLocatorPlugin.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "GpsLocator.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "ApzBeaconPlugin.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "LaunchWebviewActivity.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "ApzNativeShare.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed"
+        },
+        {
+            "FileName": "NotificationPlugin.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "NotificationReceiver.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "NotifyDownload.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed"
+        },
+        {
+            "FileName": "DeviceOrientationListener.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed"
+        },
+        {
+            "FileName": "ApzProcessImgPlugin.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "PullDown.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed"
+        },
+        {
+            "FileName": "ApzTrackLocation.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "TrackLocationService.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "Ringtone.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed"
+        },
+        {
+            "FileName": "Sms.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "SpeechToText.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "ApzVideoPlugin.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "ApzDocScannerPlugin.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "PickImage.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "ScanActivity.java",
+            "Filepath": "/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com"
+        },
+        {
+            "FileName": "ApzActivity.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed/common"
+        },
+        {
+            "FileName": "LegacyCompatFileProvider.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed/common"
+        },
+        {
+            "FileName": "OnPermissionsResultHandler.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed/common"
+        },
+        {
+            "FileName": "AppzillonMainScreen.java",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com/iexceed/appzillonapp"
+        },
+        {
+            "FileName": "activity_linked_in.xml",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/res/layout"
+        },
+        {
+            "FileName": "activity_my_native_camera.xml",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/res/layout"
+        },
+        {
+            "FileName": "activity_twitter_auth.xml",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/res/layout"
+        },
+        {
+            "FileName": "webview.xml",
+            "Filepath": "/Appzillon/Sources/Containers/AndroidStudio/app/src/main/res/layout"
+        }
+    ]
+}
