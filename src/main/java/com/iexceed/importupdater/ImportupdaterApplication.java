@@ -24,7 +24,7 @@ public class ImportupdaterApplication implements CommandLineRunner {
 		} else {
 			System.out.println("Provide Bath Path to update imports");
 			String path = "/home/users/rajesh.m/app/";
-			System.out.println("Example: java -jar importupdater-0.0.1-SNAPSHOT.jar " + "''" + path + "''");
+			System.out.println("Example: java -jar importupdater-1.0.1.jar " + "''" + path + "''");
 		}
 	}
 

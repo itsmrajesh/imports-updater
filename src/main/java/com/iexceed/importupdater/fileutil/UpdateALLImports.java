@@ -28,11 +28,9 @@ public class UpdateALLImports {
 		SeedData seedData = new SeedData();
 		ImportsData importsData = seedData.loadImportsData();
 
-		String[] paths = { 
-				"app/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com",
+		String[] paths = { "app/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com",
 				"app/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com",
-				"app/Appzillon/Sources/Containers/AndroidStudio/app/src/main/res/layout"
-				};
+				"app/Appzillon/Sources/Containers/AndroidStudio/app/src/main/res/layout" };
 
 		if (!basePath.endsWith("/")) {
 			basePath += "/";
@@ -44,7 +42,7 @@ public class UpdateALLImports {
 		for (ImportDetails imprt : imports) {
 			importsMap.put(imprt.searchFor, imprt.replace);
 		}
-		
+
 		log.info("-----INIT DONE-----");
 
 		for (String path : paths) {
@@ -86,11 +84,29 @@ public class UpdateALLImports {
 						isFileChanged = true;
 					}
 				} else {
-					if (importsMap.containsKey(line)) {
-						line = line.replaceAll(line, importsMap.get(line));
-						lines.set(i, line);
-						isFileChanged = true;
+
+					if (line.startsWith("<") && !line.endsWith("?>")) {
+						line = line.substring(1);
+						if (importsMap.containsKey(line)) {
+							line = line.replaceAll(line, importsMap.get(line));
+							line = "<" + line;
+							lines.set(i, line);
+							isFileChanged = true;
+						}
 					}
+
+					else if (line.startsWith("</") && line.endsWith(">")) {
+						int endIndex = line.lastIndexOf(">");
+						line = line.substring(2, endIndex);
+						if (importsMap.containsKey(line)) {
+							line = line.replaceAll(line, importsMap.get(line));
+							line = "</" + line + ">";
+							lines.set(i, line);
+							isFileChanged = true;
+						}
+
+					}
+
 				}
 
 			}
