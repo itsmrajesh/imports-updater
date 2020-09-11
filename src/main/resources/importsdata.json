@@ -33,8 +33,8 @@
             "replace": "import androidx.annotation.Nullable;"
         },
         {
-            "searchFor": "import android.support.v4.widget.SwipeRefreshLayout;",
-            "replace": "import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;"
+            "searchFor": "android.support.v4.widget.SwipeRefreshLayout;",
+            "replace": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout;"
         },
         {
             "searchFor": "import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;",
@@ -63,7 +63,13 @@
         },
         {
             "searchFor": "android.support.v4.widget.SwipeRefreshLayout",
-            "replace": "android.support.v4.widget.SwipeRefreshLayout"
+            "replace": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout"
+        },
+        {
+            "searchFor": "import android.support.annotation.MainThread;",
+            "replace": "import androidx.annotation.MainThread;"
         }
-    ]
+
+   ] 
+    
 }

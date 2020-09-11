@@ -24,12 +24,15 @@ public class UpdateALLImports {
 
 	public static void init(String basePath) {
 		Assert.notNull(basePath, "Base path cant be null");
-		
+
 		SeedData seedData = new SeedData();
 		ImportsData importsData = seedData.loadImportsData();
 
-		String[] paths = { "Sources/Containers/AndroidStudio/app/src/main/java/com",
-				"Sources/Plugins/AndroidStudio/app/src/main/java/com" };
+		String[] paths = { 
+				"app/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com",
+				"app/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com",
+				"app/Appzillon/Sources/Containers/AndroidStudio/app/src/main/res/layout"
+				};
 
 		if (!basePath.endsWith("/")) {
 			basePath += "/";
@@ -41,6 +44,8 @@ public class UpdateALLImports {
 		for (ImportDetails imprt : imports) {
 			importsMap.put(imprt.searchFor, imprt.replace);
 		}
+		
+		log.info("-----INIT DONE-----");
 
 		for (String path : paths) {
 			updateImports(basePath + path, importsMap);
@@ -69,6 +74,8 @@ public class UpdateALLImports {
 
 			String line = null;
 
+			boolean isFileChanged = false;
+
 			for (int i = 0; i < lines.size(); i++) {
 				line = lines.get(i).trim();
 
@@ -76,21 +83,25 @@ public class UpdateALLImports {
 					if (importsMap.containsKey(line)) {
 						line = line.replaceAll(line, importsMap.get(line));
 						lines.set(i, line);
+						isFileChanged = true;
 					}
 				} else {
 					if (importsMap.containsKey(line)) {
 						line = line.replaceAll(line, importsMap.get(line));
 						lines.set(i, line);
+						isFileChanged = true;
 					}
 				}
 
 			}
 
-			Path status = Files.write(filePath, lines);
-			if (status != null) {
-				log.info("File updated successfully");
-			} else {
-				log.info("File failed to update at location {} ", filePath.toAbsolutePath().toString());
+			if (isFileChanged) {
+				Path status = Files.write(filePath, lines);
+				if (status != null) {
+					log.info("File updated successfully at location {} ", filePath.toAbsolutePath().toString());
+				} else {
+					log.info("File failed to update at location {} ", filePath.toAbsolutePath().toString());
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -106,7 +117,7 @@ public class UpdateALLImports {
 		try (Stream<Path> walk = Files.walk(path)) {
 
 			files = walk.filter(Files::isRegularFile).map(x -> x.toString()).collect(Collectors.toList());
-			log.info("Found {} files", files.size());
+			log.info("Found {} files at location {} ", files.size(), basePath);
 
 		} catch (IOException e) {
 			e.printStackTrace();
