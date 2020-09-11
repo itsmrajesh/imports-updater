@@ -1,13 +1,27 @@
 package com.iexceed.importupdater;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.env.Environment;
 
 import com.iexceed.importupdater.fileutil.UpdateALLImports;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
+@EnableSwagger2
 public class ImportupdaterApplication implements CommandLineRunner {
+
+//	--basepath=/home/user/documents/ --server.port=8085 command line args
+
+	@Value("${server.port}")
+	private String port;
+
+	@Autowired
+	private Environment env;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ImportupdaterApplication.class, args);
@@ -15,16 +29,18 @@ public class ImportupdaterApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// UpdateImports.init();
+
+		System.out.println("-REST API : http://localhost:" + port + "/swagger-ui.html ");
 
 		if (args.length > 0) {
-			String basePath = args[0];
-			System.out.println("Base Path : " + basePath);
-			UpdateALLImports.init(basePath);
-		} else {
-			System.out.println("Provide Bath Path to update imports");
-			String path = "/home/users/rajesh.m/app/";
-			System.out.println("Example: java -jar importupdater-0.0.1-SNAPSHOT.jar " + "''" + path + "''");
+
+			String basePath = env.getProperty("basepath");
+
+			if ((basePath != null && !basePath.equalsIgnoreCase("emptypath"))) {
+				System.out.println("Base Path : " + basePath);
+				UpdateALLImports.initCMD(basePath);
+			}
+
 		}
 	}
 
