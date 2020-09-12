@@ -71,6 +71,8 @@ public class UpdateALLImports {
 			List<String> lines = Files.readAllLines(filePath);
 
 			String line = null;
+			
+			String str = "";
 
 			boolean isFileChanged = false;
 
@@ -85,19 +87,9 @@ public class UpdateALLImports {
 					}
 				} else {
 
-					if (line.startsWith("<") && !line.endsWith("?>")) {
-						line = line.substring(1);
-						if (importsMap.containsKey(line)) {
-							line = line.replaceAll(line, importsMap.get(line));
-							line = "<" + line;
-							lines.set(i, line);
-							isFileChanged = true;
-						}
-					}
-
-					else if (line.startsWith("</") && line.endsWith(">")) {
+					if (line.startsWith("</") && line.endsWith(">")) {
 						int endIndex = line.lastIndexOf(">");
-						line = line.substring(2, endIndex);
+						line = line.substring(2, endIndex).trim();
 						if (importsMap.containsKey(line)) {
 							line = line.replaceAll(line, importsMap.get(line));
 							line = "</" + line + ">";
@@ -105,6 +97,21 @@ public class UpdateALLImports {
 							isFileChanged = true;
 						}
 
+					}
+
+					else if (line.startsWith("<") && !line.endsWith("?>")) {
+						line = line.substring(1);
+						int index = line.indexOf("xmlns:");
+						if (index != -1) {
+							str = line.substring(index);
+							line = line.substring(0, index - 1).trim();
+						}
+						if (importsMap.containsKey(line)) {
+							line = line.replaceAll(line, importsMap.get(line));
+							line = "<" + line + str;
+							lines.set(i, line);
+							isFileChanged = true;
+						}
 					}
 
 				}
