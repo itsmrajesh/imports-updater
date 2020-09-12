@@ -51,6 +51,7 @@ public class UpdateALLImports {
 		for (String path : paths) {
 			updateImports(basePath + path, importsMap);
 		}
+		log.info("--------Application Terminated---------");
 
 	}
 
@@ -130,11 +131,10 @@ public class UpdateALLImports {
 				Path status = Files.write(filePath, lines);
 				if (status != null) {
 					log.info("File updated successfully at location {} ", filePath.toAbsolutePath().toString());
-					log.info("-------------------------------------------");
 				} else {
 					log.info("File failed to update at location {} ", filePath.toAbsolutePath().toString());
-					log.info("-------------------------------------------");
 				}
+				log.info("-------------------------------------------");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
