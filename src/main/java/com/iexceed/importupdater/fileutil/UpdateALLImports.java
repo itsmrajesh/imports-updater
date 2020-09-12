@@ -108,15 +108,16 @@ public class UpdateALLImports {
 						}
 						if (importsMap.containsKey(line)) {
 							line = line.replaceAll(line, importsMap.get(line));
-							line = "<" + line + str;
+							line = "<" + line +" "+ str;
 							lines.set(i, line);
 							isFileChanged = true;
 						}
 					}
-
 				}
 
-			}
+				
+				
+			} // for loop end
 
 			if (isFileChanged) {
 				Path status = Files.write(filePath, lines);
