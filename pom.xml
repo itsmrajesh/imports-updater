@@ -66,6 +66,6 @@
 		</plugins>
 	</build>
 
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 	<description>Updates the imports for given location with importsmap</description>
 </project>
