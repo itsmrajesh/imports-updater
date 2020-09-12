@@ -22,6 +22,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UpdateALLImports {
 
+	private static final String SEARCH = "android.support.v4.widget.SwipeRefreshLayout";
+	private static final String NEWIMPORT = "androidx.swiperefreshlayout.widget.SwipeRefreshLayout";
+
 	public static void init(String basePath) {
 		Assert.notNull(basePath, "Base path cant be null");
 
@@ -53,6 +56,7 @@ public class UpdateALLImports {
 
 	private static void updateImports(String path, Map<String, String> importsMap) {
 		List<String> files = getAllFiles(path);
+		log.info("Started updating given imports");
 		writeToFile(files, importsMap);
 
 	}
@@ -71,7 +75,7 @@ public class UpdateALLImports {
 			List<String> lines = Files.readAllLines(filePath);
 
 			String line = null;
-			
+
 			String str = "";
 
 			boolean isFileChanged = false;
@@ -79,14 +83,21 @@ public class UpdateALLImports {
 			for (int i = 0; i < lines.size(); i++) {
 				line = lines.get(i).trim();
 
+				// Java Imports start Only .java files
 				if (isJavaFile && line.startsWith("import")) {
 					if (importsMap.containsKey(line)) {
 						line = line.replaceAll(line, importsMap.get(line));
 						lines.set(i, line);
 						isFileChanged = true;
+					} else if (line.contains(SEARCH)) { // only for direct imports in program.
+						line = line.replaceAll(SEARCH, NEWIMPORT);
+						lines.set(i, line);
+						isFileChanged = true;
 					}
+					// Java Imports end
 				} else {
 
+					// XML
 					if (line.startsWith("</") && line.endsWith(">")) {
 						int endIndex = line.lastIndexOf(">");
 						line = line.substring(2, endIndex).trim();
@@ -96,10 +107,7 @@ public class UpdateALLImports {
 							lines.set(i, line);
 							isFileChanged = true;
 						}
-
-					}
-
-					else if (line.startsWith("<") && !line.endsWith("?>")) {
+					} else if (line.startsWith("<") && !line.endsWith("?>")) {
 						line = line.substring(1);
 						int index = line.indexOf("xmlns:");
 						if (index != -1) {
@@ -108,23 +116,24 @@ public class UpdateALLImports {
 						}
 						if (importsMap.containsKey(line)) {
 							line = line.replaceAll(line, importsMap.get(line));
-							line = "<" + line +" "+ str;
+							line = "<" + line + " " + str;
 							lines.set(i, line);
 							isFileChanged = true;
 						}
 					}
 				}
+				// end of else [XML FILE UPDATE]
 
-				
-				
 			} // for loop end
 
 			if (isFileChanged) {
 				Path status = Files.write(filePath, lines);
 				if (status != null) {
 					log.info("File updated successfully at location {} ", filePath.toAbsolutePath().toString());
+					log.info("-------------------------------------------");
 				} else {
 					log.info("File failed to update at location {} ", filePath.toAbsolutePath().toString());
+					log.info("-------------------------------------------");
 				}
 			}
 		} catch (IOException e) {
