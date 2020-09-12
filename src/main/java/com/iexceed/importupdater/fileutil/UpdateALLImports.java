@@ -83,9 +83,9 @@ public class UpdateALLImports {
 			for (int i = 0; i < lines.size(); i++) {
 				line = lines.get(i).trim();
 
-				// Java Imports start Only .java files
-				if (isJavaFile && line.startsWith("import")) {
-					if (importsMap.containsKey(line)) {
+				// Java Imports start (Only .java files)
+				if (isJavaFile) {
+					if (line.startsWith("import") && importsMap.containsKey(line)) {
 						line = line.replaceAll(line, importsMap.get(line));
 						lines.set(i, line);
 						isFileChanged = true;
