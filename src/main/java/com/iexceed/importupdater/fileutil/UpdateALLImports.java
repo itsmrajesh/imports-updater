@@ -25,6 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class UpdateALLImports {
 
+	private static final String SEARCH = "android.support.v4.widget.SwipeRefreshLayout";
+	private static final String NEWIMPORT = "androidx.swiperefreshlayout.widget.SwipeRefreshLayout";
+
 	static String[] pathsToUpdate = { "Sources/Containers/AndroidStudio/app/src/main/java/com",
 			"Sources/Plugins/AndroidStudio/app/src/main/java/com" };
 
@@ -100,26 +103,55 @@ public class UpdateALLImports {
 
 			String line = null;
 
+			String str = "";
+
 			boolean isFileChanged = false;
 
 			for (int i = 0; i < lines.size(); i++) {
 				line = lines.get(i).trim();
 
-				if (isJavaFile && line.startsWith("import")) {
-					if (importsMap.containsKey(line)) {
+				// Java Imports start (Only .java files)
+				if (isJavaFile) {
+					if (line.startsWith("import") && importsMap.containsKey(line)) {
 						line = line.replaceAll(line, importsMap.get(line));
+						lines.set(i, line);
+						isFileChanged = true;
+					} else if (line.contains(SEARCH)) { // only for direct imports in program.
+						line = line.replaceAll(SEARCH, NEWIMPORT);
 						lines.set(i, line);
 						isFileChanged = true;
 					}
+					// Java Imports end
 				} else {
-					if (importsMap.containsKey(line)) {
-						line = line.replaceAll(line, importsMap.get(line));
-						lines.set(i, line);
-						isFileChanged = true;
+
+					// XML
+					if (line.startsWith("</") && line.endsWith(">")) {
+						int endIndex = line.lastIndexOf(">");
+						line = line.substring(2, endIndex).trim();
+						if (importsMap.containsKey(line)) {
+							line = line.replaceAll(line, importsMap.get(line));
+							line = "</" + line + ">";
+							lines.set(i, line);
+							isFileChanged = true;
+						}
+					} else if (line.startsWith("<") && !line.endsWith("?>")) {
+						line = line.substring(1);
+						int index = line.indexOf("xmlns:");
+						if (index != -1) {
+							str = line.substring(index);
+							line = line.substring(0, index - 1).trim();
+						}
+						if (importsMap.containsKey(line)) {
+							line = line.replaceAll(line, importsMap.get(line));
+							line = "<" + line + " " + str;
+							lines.set(i, line);
+							isFileChanged = true;
+						}
 					}
 				}
+				// end of else [XML FILE UPDATE]
 
-			}
+			} // for loop end
 
 			if (isFileChanged) {
 				Path status = Files.write(filePath, lines);
@@ -128,6 +160,7 @@ public class UpdateALLImports {
 				} else {
 					log.info("File failed to update at location {} ", filePath.toAbsolutePath().toString());
 				}
+				log.info("-------------------------------------------");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
