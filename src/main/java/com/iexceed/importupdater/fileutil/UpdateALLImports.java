@@ -28,15 +28,30 @@ public class UpdateALLImports {
 	public static void init(String basePath) {
 		Assert.notNull(basePath, "Base path cant be null");
 
+		String os = "LINUX";
+
+		String SEP = "/"; // default for Linux
+
+		try {
+			os = System.getProperty("os.name").toUpperCase();
+		} catch (Exception e) {
+			os = "WIN";
+			SEP = "\\";
+		}
+
 		SeedData seedData = new SeedData();
 		ImportsData importsData = seedData.loadImportsData();
+
+		if (os.startsWith("WIN")) {
+			SEP = "\\";
+		}
 
 		String[] paths = { "app/Appzillon/Sources/Containers/AndroidStudio/app/src/main/java/com",
 				"app/Appzillon/Sources/Plugins/AndroidStudio/app/src/main/java/com",
 				"app/Appzillon/Sources/Containers/AndroidStudio/app/src/main/res/layout" };
 
-		if (!basePath.endsWith("/")) {
-			basePath += "/";
+		if (!basePath.endsWith(SEP)) {
+			basePath += SEP;
 		}
 
 		List<ImportDetails> imports = importsData.getImportsData();
@@ -49,6 +64,9 @@ public class UpdateALLImports {
 		log.info("-----INIT DONE-----");
 
 		for (String path : paths) {
+			if (os.startsWith("WIN")) {
+				path = path.replaceAll("/", "\\\\\\\\"); // while will this-> '/' to this-> '\\' 
+			}
 			updateImports(basePath + path, importsMap);
 		}
 		log.info("--------Application Terminated---------");
